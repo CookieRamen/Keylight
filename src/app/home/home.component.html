@@ -1,0 +1,54 @@
+<!-- debug -->
+<button mat-button (click)="isLogin = !isLogin">debug: toggle login</button>
+
+<p>isLogin: {{isLogin}}</p>
+<!-- end debug -->
+<div class="component">
+  <ng-template [ngIf]="isLogin">
+    <!-- todo: タイムライン切り替え -->
+    <ng-template ngFor [ngForOf]="for">
+      <mat-card class="note">
+        <mat-card-header>
+          <div mat-card-avatar class="dummy-avator"></div>
+          <mat-card-title>Username</mat-card-title>
+          <mat-card-subtitle>@username</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur autem hic magnam natus
+            provident
+            sunt? Aliquid minus optio quas vel. Architecto at beatae dolorum enim expedita magnam perferendis
+            ratione?</p>
+          <p>
+            <small>yyyy/mm/dd HH:mm:dd</small>
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>reply</button>
+          <button mat-button>renote</button>
+          <button mat-button [matMenuTriggerFor]="reaction">reactions</button>
+          <mat-menu #reaction=matMenu>
+            <button mat-menu-item>いいね</button>
+            <button mat-menu-item>しゅき</button>
+            <button mat-menu-item>笑</button>
+            <button mat-menu-item>ふぅ～む</button>
+            <button mat-menu-item>わお</button>
+            <button mat-menu-item>おめでとう</button>
+            <button mat-menu-item>おこ</button>
+            <button mat-menu-item>こまこまのこまり</button>
+            <button mat-menu-item>RIP</button>
+            <button mat-menu-item>Pudding</button>
+          </mat-menu>
+          <!-- todo: リアクション 押したとき -->
+          <button mat-button>more</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-template>
+  </ng-template>
+
+  <ng-template [ngIf]="!isLogin">
+    <!-- todo: ログインしていない場合 -->
+    <p>長い説明</p>
+    <!-- todo: ログイン -->
+    <!-- todo: Patreonへのリンク -->
+  </ng-template>
+</div>

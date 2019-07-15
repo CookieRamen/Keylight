@@ -1,0 +1,47 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <ng-template [ngIf]="isLogin">
+        <a mat-list-item routerLink="/">ホーム</a>
+        <a mat-list-item routerLink="/notifications"><span matBadge="99+" matBadgeOverlap="false">通知</span></a>
+        <a mat-list-item routerLink="/settings">設定</a>
+      </ng-template>
+      <ng-template [ngIf]="!isLogin">
+        <a mat-list-item routerLink="/login">ログイン</a>
+      </ng-template>
+      <!-- debug -->
+      <a mat-list-item (click)="isLogin = !isLogin">debug: toggle login</a>
+      <a mat-list-item (click)="openNew()">debug: post</a>
+      <!-- end debug -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <ng-template [ngIf]="logo != ''">
+        <span><img [src]="logo" [alt]="apptitle"></span><!-- todo: サイズおかしい -->
+      </ng-template>
+      <ng-template [ngIf]="logo === ''">
+        <span>{{apptitle}}</span>
+      </ng-template>
+      <div class="flex-spacer"></div>
+      <button
+        type="button"
+        aria-label="Post"
+        mat-icon-button
+        (click)="openNew()"><mat-icon>create</mat-icon></button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  host: 'https://misskey.io',
+  title: 'Misskey.io',
+  apptitle: 'Misskey.io Lite',
+  logo: 'https://assets.arkjp.net/misskey/lite/lite_logo.svg'
 };
 
 /*

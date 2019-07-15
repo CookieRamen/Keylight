@@ -15,3 +15,8 @@
   top: 0;
   z-index: 1;
 }
+
+.flex-spacer {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}

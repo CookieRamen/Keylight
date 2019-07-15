@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>新規投稿</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="data.body"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCloseClick()">閉じる</button>
+  <button mat-button [mat-dialog-close]="data.body">投稿</button>
+</div>
