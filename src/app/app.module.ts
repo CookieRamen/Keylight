@@ -22,6 +22,7 @@ import {SettingsComponent} from './settings/settings.component';
 import {HomeComponent} from './home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { LoginComponent } from './login/login.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     MatBadgeModule,
     FormsModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule
   ],
   entryComponents: [
     DialogOverviewPostDialog
