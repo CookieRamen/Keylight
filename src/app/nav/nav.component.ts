@@ -16,7 +16,7 @@ export interface NewPostData {
 })
 export class NavComponent {
   isLogin = true;
-  apptitle = environment.apptitle;
+  appTitle = environment.appTitle;
   logo = environment.logo;
   body: string;
 

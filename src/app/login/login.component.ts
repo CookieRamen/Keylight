@@ -7,7 +7,7 @@ import {environment} from '../../environments/environment';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  title = environment.title;
+  hostTitle = environment.hostTitle;
 
   constructor() { }
 

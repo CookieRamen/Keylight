@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  host: 'https://misskey.io',
-  title: 'Misskey.io',
-  apptitle: 'Misskey.io Lite',
+  hostURL: 'https://misskey.io',
+  hostTitle: 'Misskey.io',
+  appTitle: 'Misskey.io Lite',
   logo: 'https://assets.arkjp.net/misskey/lite/lite_logo.svg'
 };
 
