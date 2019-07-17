@@ -24,13 +24,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.UpdateNotes();
+    this.UpdateNotes(null);
   }
 
-  UpdateNotes() {
+  UpdateNotes(event) {
     this.httpClient.post('https://misskey.io/api/notes/timeline', this.reqBody)
       .subscribe((data: any[]) => {
         this.for = data;
+        if (event !== null) {
+          event.target.complete();
+        }
       });
   }
 
