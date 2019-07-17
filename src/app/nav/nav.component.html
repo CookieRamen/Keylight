@@ -29,12 +29,6 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <ng-template [ngIf]="logo != ''">
-        <span><img [src]="logo" [alt]="apptitle"></span><!-- todo: サイズおかしい -->
-      </ng-template>
-      <ng-template [ngIf]="logo === ''">
-        <span>{{apptitle}}</span>
-      </ng-template>
       <div class="flex-spacer"></div>
       <button
         type="button"
