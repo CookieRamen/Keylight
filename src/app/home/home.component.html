@@ -1,52 +1,65 @@
-<!-- debug -->
-<button mat-button (click)="isLogin = !isLogin">debug: toggle login</button>
-<button mat-button (click)="UpdateNotes()">debug: Update notes</button>
+<ng-template [ngIf]="isLogin">
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="UpdateNotes($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- debug -->
+    <!-- <button mat-button (click)="isLogin = !isLogin">debug: toggle login</button> -->
+    <!-- <p>isLogin: {{isLogin}}</p> -->
+    <!-- end debug -->
+    <div class="component">
+      <mat-form-field>
+        <mat-select [(value)]="timeLine" (selectionChange)="UpdateNotes($event)">
+          <mat-option value="timeline">ホーム</mat-option>
+          <mat-option value="hybrid-timeline">ソーシャル</mat-option>
+          <mat-option value="local-timeline">ローカル</mat-option>
+          <mat-option value="global-timeline">グローバル</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <ng-template ngFor let-data [ngForOf]="for">
+        <mat-card class="note">
+          <mat-card-header>
+            <div mat-card-avatar [style.background-image]="GetImg(data.user.avatarUrl)"></div>
+            <mat-card-title>{{data.user.name}}</mat-card-title>
+            <mat-card-subtitle>@{{data.user.username}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{data.text}}</p>
+            <p>
+              <small>{{data.createdAt | date: 'yyyy年MM月dd日 HH:mm:ss'}}</small>
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button mat-button><mat-icon>reply</mat-icon></button>
+            <button mat-icon-button mat-button><mat-icon>repeat</mat-icon></button>
+            <button mat-icon-button mat-button [matMenuTriggerFor]="reaction"><mat-icon>add</mat-icon></button>
+            <mat-menu #reaction=matMenu>
+              <button mat-menu-item>いいね</button>
+              <button mat-menu-item>しゅき</button>
+              <button mat-menu-item>笑</button>
+              <button mat-menu-item>ふぅ～む</button>
+              <button mat-menu-item>わお</button>
+              <button mat-menu-item>おめでとう</button>
+              <button mat-menu-item>おこ</button>
+              <button mat-menu-item>こまこまのこまり</button>
+              <button mat-menu-item>RIP</button>
+              <button mat-menu-item>Pudding</button>
+            </mat-menu>
+            <!-- todo: リアクション 押したとき -->
+            <button mat-icon-button mat-button><mat-icon>expand_more</mat-icon></button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+    </div>
+  </ion-content>
+</ng-template>
 
-<p>isLogin: {{isLogin}}</p>
-<!-- end debug -->
-<div class="component">
-  <ng-template [ngIf]="isLogin">
-    <!-- todo: タイムライン切り替え -->
-    <ng-template ngFor let-data [ngForOf]="for">
-      <mat-card class="note">
-        <mat-card-header>
-          <div mat-card-avatar class="dummy-avator"></div>
-          <mat-card-title>{{data.user.name}}</mat-card-title>
-          <mat-card-subtitle>@{{data.user.username}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{data.text}}</p>
-          <p>
-            <small>{{data.createdAt | date: 'yyyy年MM月dd日 HH:mm:ss'}}</small>
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>reply</button>
-          <button mat-button>renote</button>
-          <button mat-button [matMenuTriggerFor]="reaction">reactions</button>
-          <mat-menu #reaction=matMenu>
-            <button mat-menu-item>いいね</button>
-            <button mat-menu-item>しゅき</button>
-            <button mat-menu-item>笑</button>
-            <button mat-menu-item>ふぅ～む</button>
-            <button mat-menu-item>わお</button>
-            <button mat-menu-item>おめでとう</button>
-            <button mat-menu-item>おこ</button>
-            <button mat-menu-item>こまこまのこまり</button>
-            <button mat-menu-item>RIP</button>
-            <button mat-menu-item>Pudding</button>
-          </mat-menu>
-          <!-- todo: リアクション 押したとき -->
-          <button mat-button>more</button>
-        </mat-card-actions>
-      </mat-card>
-    </ng-template>
-  </ng-template>
 
-  <ng-template [ngIf]="!isLogin">
+<ng-template [ngIf]="!isLogin">
+  <div class="component">
     <!-- todo: ログインしていない場合 -->
     <p>長い説明</p>
     <!-- todo: ログイン -->
     <!-- todo: Patreonへのリンク -->
-  </ng-template>
-</div>
+  </div>
+</ng-template>
