@@ -6,20 +6,17 @@
 <div class="component">
   <ng-template [ngIf]="isLogin">
     <!-- todo: タイムライン切り替え -->
-    <ng-template ngFor [ngForOf]="for">
+    <ng-template ngFor let-data [ngForOf]="for">
       <mat-card class="note">
         <mat-card-header>
           <div mat-card-avatar class="dummy-avator"></div>
-          <mat-card-title>Username</mat-card-title>
-          <mat-card-subtitle>@username</mat-card-subtitle>
+          <mat-card-title>{{data.user.name}}</mat-card-title>
+          <mat-card-subtitle>@{{data.user.username}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur autem hic magnam natus
-            provident
-            sunt? Aliquid minus optio quas vel. Architecto at beatae dolorum enim expedita magnam perferendis
-            ratione?</p>
+          <p>{{data.text}}</p>
           <p>
-            <small>yyyy/mm/dd HH:mm:dd</small>
+            <small>{{data.createdAt | date: 'yyyy年mm月dd日 HH:MM:ss'}}</small>
           </p>
         </mat-card-content>
         <mat-card-actions>
