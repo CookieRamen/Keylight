@@ -10,6 +10,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class HomeComponent implements OnInit {
   isLogin = true;
   for: any;
+  timeLine = 'timeline';
 
   reqBody = {
     limit: 11,
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   UpdateNotes(event) {
-    this.httpClient.post('https://misskey.io/api/notes/timeline', this.reqBody)
+    this.httpClient.post('https://misskey.io/api/notes/' + this.timeLine, this.reqBody)
       .subscribe((data: any[]) => {
         this.for = data;
         if (event !== null) {
